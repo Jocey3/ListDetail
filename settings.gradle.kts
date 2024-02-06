@@ -15,4 +15,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "ListDetail"
 include(":app")
- 
+include(":common")
+include(":data")
+include(":domain")
