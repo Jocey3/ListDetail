@@ -10,12 +10,11 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
-        appComponent = DaggerAppComponent.builder().context(applicationContext)
-            .dataComponent(provideDataComponent()).build()
+        appComponent = DaggerAppComponent.factory()
+            .create(context = applicationContext, dataComponent = provideDataComponent())
     }
 
     private fun provideDataComponent(): DataComponent {
-        return DaggerDataComponent.builder().context(applicationContext).build()
+        return DaggerDataComponent.factory().create(applicationContext)
     }
 }

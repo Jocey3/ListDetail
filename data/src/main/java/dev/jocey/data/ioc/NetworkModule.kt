@@ -8,6 +8,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Qualifier
+import javax.inject.Singleton
 
 @Module
 class NetworkModule {
@@ -16,6 +17,7 @@ class NetworkModule {
     @NumberBaseUrl
     fun provideNumberBaseUrl(): String = "http://numbersapi.com"
 
+    @Singleton
     @Provides
     fun provideNumberRetrofit(@NumberBaseUrl numberBaseUrl: String): Retrofit {
 
@@ -32,14 +34,10 @@ class NetworkModule {
             .build()
     }
 
-
+    @Singleton
     @Provides
     fun provideNumberApi(retrofit: Retrofit): NumberApi {
         return retrofit.create(NumberApi::class.java)
     }
 
 }
-
-@Retention(AnnotationRetention.RUNTIME)
-@Qualifier
-annotation class NumberBaseUrl
