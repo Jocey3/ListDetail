@@ -1,8 +1,8 @@
 package dev.jocey.listdetail.di
 
 import android.app.Application
-import dev.jocey.data.ioc.DaggerDataComponent
-import dev.jocey.data.ioc.DataComponent
+import dev.jocey.common.di.CommonComponent
+import dev.jocey.data.di.DataComponent
 
 class App : Application() {
 
@@ -11,10 +11,18 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         appComponent = DaggerAppComponent.factory()
-            .create(context = applicationContext, dataComponent = provideDataComponent())
+            .create(
+                context = applicationContext,
+                dataComponent = provideDataComponent(),
+                commonComponent = provideCommonComponent()
+            )
     }
 
     private fun provideDataComponent(): DataComponent {
         return DaggerDataComponent.factory().create(applicationContext)
+    }
+
+    private fun provideCommonComponent(): CommonComponent {
+        return DaggerCommonComponent.factory().create()
     }
 }

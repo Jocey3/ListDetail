@@ -53,9 +53,10 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    implementation(project(":shared_libs"))
+    implementation(project(":common"))
     implementation(project(":data"))
     implementation(project(":domain"))
-    implementation(project(":common"))
 
     val lifecycle_version = "2.6.2"
     // ViewModel
@@ -75,6 +76,4 @@ dependencies {
     kapt("com.google.dagger:dagger-compiler:2.50")
     kapt("com.google.dagger:dagger-android-processor:2.29.1")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    //Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
 }

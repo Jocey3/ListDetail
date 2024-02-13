@@ -2,26 +2,29 @@ package dev.jocey.listdetail
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import dev.jocey.data.data_source.network.NumberApi
 import dev.jocey.listdetail.di.App
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import javax.inject.Inject
+import dev.jocey.listdetail.temp.HomeViewModel
+import java.util.Random
+
 
 class MainActivity : AppCompatActivity() {
-    @Inject
-    lateinit var api: NumberApi
+    private val vm: HomeViewModel by viewModels<HomeViewModel>()
+    private val random = Random()
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as App).appComponent.inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val call = async { api.getNumber("3") }
-            Log.d("myLog", call.await().toString())
+        val tv: TextView = findViewById(R.id.tv_next)
+        tv.setOnClickListener {
+            vm.getNumber(random.nextInt(100))
+        }
+        vm.numberLiveData.observe(this) {
+            Log.d("myLog", it.toString())
         }
 
     }

@@ -42,15 +42,10 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    implementation(project(":shared_libs"))
+    implementation(project(":common"))
     implementation(project(":domain"))
-//    implementation(project(":common"))
 
-    //Dagger
-    implementation("com.google.dagger:dagger:2.50")
-    implementation("com.google.dagger:dagger-android:2.29.1")
-    implementation("com.google.dagger:dagger-android-support:2.29.1")
-    kapt("com.google.dagger:dagger-compiler:2.50")
-    kapt("com.google.dagger:dagger-android-processor:2.29.1")
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")

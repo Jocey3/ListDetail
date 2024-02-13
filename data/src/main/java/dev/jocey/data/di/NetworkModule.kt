@@ -1,25 +1,26 @@
-package dev.jocey.data.ioc
+package dev.jocey.data.di
 
 import dagger.Module
 import dagger.Provides
 import dev.jocey.data.data_source.network.NumberApi
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
 class NetworkModule {
 
     @Provides
-    @NumberBaseUrl
+    @dev.jocey.common.util.NumberBaseUrl
     fun provideNumberBaseUrl(): String = "http://numbersapi.com"
 
     @Singleton
     @Provides
-    fun provideNumberRetrofit(@NumberBaseUrl numberBaseUrl: String): Retrofit {
+    fun provideNumberRetrofit(@dev.jocey.common.util.NumberBaseUrl numberBaseUrl: String): Retrofit {
 
         val httpLogsInterceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
@@ -39,5 +40,4 @@ class NetworkModule {
     fun provideNumberApi(retrofit: Retrofit): NumberApi {
         return retrofit.create(NumberApi::class.java)
     }
-
 }

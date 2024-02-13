@@ -1,18 +1,16 @@
-package dev.jocey.data.ioc
+package dev.jocey.data.di
 
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
-import dev.jocey.data.data_source.network.NumberApi
+import dev.jocey.domain.repository.Repository
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [NetworkModule::class])
+@Component(modules = [NetworkModule::class, RepositoryModule::class])
 interface DataComponent {
     @Component.Factory
     interface Factory {
         fun create(@BindsInstance context: Context): DataComponent
     }
-
-    fun provideApi(): NumberApi
 }

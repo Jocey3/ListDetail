@@ -1,17 +1,10 @@
 package dev.jocey.data.data_source.network
 
+import dev.jocey.data.model.remote.NumberApiModel
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface NumberApi {
-
     @GET("/{number}?json")
-    suspend fun getNumber(@Path("number") number: String): Modi
+    suspend fun getNumber(@Path("number") number: String): NumberApiModel
 }
-
-data class Modi(
-    val number: Int,
-    val text: String,
-    val found: Boolean,
-    val type: String
-)
