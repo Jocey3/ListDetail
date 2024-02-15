@@ -67,13 +67,7 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.6.2")
     //RecyclerView
     implementation("androidx.recyclerview:recyclerview:1.3.2")
-    //Glide
-    implementation("com.github.bumptech.glide:glide:4.15.1")
     //Dagger
-    implementation("com.google.dagger:dagger:2.50")
-    implementation("com.google.dagger:dagger-android:2.29.1")
-    implementation("com.google.dagger:dagger-android-support:2.29.1")
     kapt("com.google.dagger:dagger-compiler:2.50")
     kapt("com.google.dagger:dagger-android-processor:2.29.1")
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
 }

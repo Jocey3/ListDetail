@@ -9,10 +9,6 @@ annotation class NumberBaseUrl
 
 @Retention(AnnotationRetention.RUNTIME)
 @Qualifier
-annotation class NumberRepository
-
-@Retention(AnnotationRetention.RUNTIME)
-@Qualifier
 annotation class IODispatcher
 
 @Retention(AnnotationRetention.RUNTIME)

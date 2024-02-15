@@ -7,10 +7,11 @@ import dev.jocey.domain.repository.Repository
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [NetworkModule::class, RepositoryModule::class])
+@Component(modules = [NetworkModule::class])
 interface DataComponent {
     @Component.Factory
     interface Factory {
         fun create(@BindsInstance context: Context): DataComponent
     }
+    fun rep():Repository
 }
