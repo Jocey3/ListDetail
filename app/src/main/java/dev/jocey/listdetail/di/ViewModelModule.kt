@@ -6,7 +6,7 @@ import dagger.Binds
 import dagger.MapKey
 import dagger.Module
 import dagger.multibindings.IntoMap
-import dev.jocey.listdetail.temp.HomeViewModel
+import dev.jocey.feature_home.HomeViewModel
 import kotlin.reflect.KClass
 
 @Module

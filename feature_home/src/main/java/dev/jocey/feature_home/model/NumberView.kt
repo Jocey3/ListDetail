@@ -1,4 +1,4 @@
-package dev.jocey.listdetail.temp.model
+package dev.jocey.feature_home.model
 
 data class NumberView(
     val number: Int,

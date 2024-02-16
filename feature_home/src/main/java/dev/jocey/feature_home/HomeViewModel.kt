@@ -1,12 +1,12 @@
-package dev.jocey.listdetail.temp
+package dev.jocey.feature_home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dev.jocey.domain.use_case.GetNumberUseCase
-import dev.jocey.listdetail.temp.mapper.NumberMapper
-import dev.jocey.listdetail.temp.model.NumberView
+import dev.jocey.feature_home.mapper.NumberMapper
+import dev.jocey.feature_home.model.NumberView
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
