@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="input_a_number">Input a number</string>
+    <string name="get_number_fact">Get number fact</string>
+    <string name="get_random_fact">Get random fact</string>
+</resources>

@@ -18,10 +18,14 @@ class HomeViewModel @Inject constructor(
     private val _numberLiveData: MutableLiveData<NumberView> = MutableLiveData<NumberView>()
     val numberLiveData: LiveData<NumberView> = _numberLiveData
 
-    fun getNumber(nextInt: Int) {
+    fun getNumber(nextInt: String) {
         viewModelScope.launch {
-            val num = getNumberUseCase.invoke(nextInt.toString())
+            val num = getNumberUseCase.invoke(nextInt)
             _numberLiveData.value = numberMapper.mapFromDomainToView(num)
         }
+    }
+
+    fun getRandomFact() {
+
     }
 }
