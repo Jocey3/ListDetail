@@ -62,6 +62,8 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.6.2")
     //RecyclerView
     implementation("androidx.recyclerview:recyclerview:1.3.2")
+    //Paging3
+    implementation("androidx.paging:paging-runtime:3.2.1")
     //Dagger
     kapt("com.google.dagger:dagger-compiler:2.50")
     kapt("com.google.dagger:dagger-android-processor:2.29.1")

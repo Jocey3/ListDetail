@@ -18,4 +18,8 @@ class NumberMapper @Inject constructor() {
             type = apiModel.type
         )
     }
+
+    fun mapFromEntityToDomain(entity: NumberEntity): NumberDomain {
+        return NumberDomain(number = entity.number, text = entity.text)
+    }
 }

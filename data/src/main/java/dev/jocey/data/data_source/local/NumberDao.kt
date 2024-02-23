@@ -7,11 +7,12 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import dev.jocey.data.model.local.NumberEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NumberDao {
-    @Query("SELECT * FROM numbers")
-    suspend fun getAll(): List<NumberEntity>
+    @Query("SELECT * FROM numbers ORDER BY id ASC")
+    fun getAll(): Flow<List<NumberEntity>>
 
     @Query("SELECT * FROM numbers WHERE number LIKE :number")
     suspend fun findByNumber(number: Int): List<NumberEntity>

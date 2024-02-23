@@ -7,6 +7,8 @@ import dev.jocey.data.mapper.NumberMapper
 import dev.jocey.domain.model.NumberDomain
 import dev.jocey.domain.repository.Repository
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -17,11 +19,24 @@ class RepositoryImpl @Inject constructor(
     @IODispatcher
     private val iODispatcher: CoroutineDispatcher
 ) : Repository {
+    override fun getAllNumbers(): Flow<List<NumberDomain>> {
+        return localDataSource.getAllNumbers().map {
+            it.map { numberEntity -> mapper.mapFromEntityToDomain(numberEntity) }
+        }
+    }
+
     override suspend fun getNumber(number: String): NumberDomain {
         return withContext(iODispatcher) {
             val numberRemoteModel = remoteDataSource.getNumber(number)
             localDataSource.insertAll(listOf(mapper.mapFromApiToEntity(numberRemoteModel)))
             mapper.mapFromApiToDomain(numberRemoteModel)
+        }
+    }
+
+    override suspend fun getRandomNumber() {
+        return withContext(iODispatcher) {
+            val randomNumber = remoteDataSource.getRandomNumber()
+            localDataSource.insertAll(listOf(mapper.mapFromApiToEntity(randomNumber)))
         }
     }
 }

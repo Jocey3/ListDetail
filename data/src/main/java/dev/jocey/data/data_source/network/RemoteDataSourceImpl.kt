@@ -7,4 +7,7 @@ class RemoteDataSourceImpl @Inject constructor(private val api: NumberApi) : Rem
     override suspend fun getNumber(number: String): NumberApiModel {
         return api.getNumber(number)
     }
+    override suspend fun getRandomNumber(): NumberApiModel {
+        return api.getRandomNumber()
+    }
 }

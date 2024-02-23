@@ -15,7 +15,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding?.root)
 
         supportFragmentManager.commit {
-            add(R.id.fragment_container, HomeFragment(), HomeFragment::class.java.name)
+            supportFragmentManager.findFragmentByTag(HomeFragment::class.java.name)?.let {
+                replace(R.id.fragment_container, it, HomeFragment::class.java.name)
+            } ?: run {
+                add(R.id.fragment_container, HomeFragment(), HomeFragment::class.java.name)
+            }
         }
     }
 }
