@@ -63,9 +63,10 @@ class HomeFragment : Fragment() {
 
     private fun validateInputtedNumber() {
         val number = binding?.searchInputField?.text.toString().trim()
-        if (number.isNullOrEmpty()) {
+        if (number.isEmpty()) {
             binding?.searchInputField?.error = "Please input a number."
         } else if (number.length in 1..5) {
+            binding?.searchInputField?.text = null
             viewModel.getNumber(number)
         } else {
             binding?.searchInputField?.error = "Please input a smaller number."

@@ -1,76 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="dev.jocey.feature_home.HomeViewModel" />
     </data>
 
     <LinearLayout
+        android:id="@+id/ll_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="10dp"
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/ll_one_part"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
             android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_layout"
+            <LinearLayout
+                android:id="@+id/ll_one_part"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="@string/input_a_number"
-                android:textColorHint="@android:color/black">
+                android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/search_input_field"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/input_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:imeOptions="actionSearch"
-                    android:inputType="number"
-                    android:singleLine="true" />
+                    android:layout_marginBottom="10dp"
+                    android:hint="@string/input_a_number"
+                    android:textColorHint="@android:color/black"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="5"
+                    app:errorEnabled="true"
+                    app:errorTextAppearance="@style/error_appearance"
+                    tools:error="set tetx">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/search_input_field"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionSearch"
+                        android:inputType="number"
+                        android:singleLine="true" />
 
-            <Button
-                android:id="@+id/btn_get_number_fact"
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btn_get_number_fact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@android:color/darker_gray"
+                    android:text="@string/get_number_fact"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/btn_get_random_fact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@android:color/darker_gray"
+                    android:text="@string/get_random_fact"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_second_part"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/darker_gray"
-                android:text="@string/get_number_fact"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btn_get_random_fact"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="@android:color/darker_gray"
-                android:text="@string/get_random_fact"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_history_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:text="@string/history"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
-        <LinearLayout
-            android:id="@+id/ll_second_part"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </layout>

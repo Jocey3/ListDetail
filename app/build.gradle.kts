@@ -57,11 +57,11 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    implementation(project(":feature_home"))
     implementation(project(":shared_libs"))
     implementation(project(":common"))
     implementation(project(":data"))
     implementation(project(":domain"))
-    implementation(project(":feature_home"))
 
     val lifecycle_version = "2.6.2"
     // ViewModel
