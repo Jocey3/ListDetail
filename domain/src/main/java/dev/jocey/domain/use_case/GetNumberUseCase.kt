@@ -5,7 +5,7 @@ import dev.jocey.domain.repository.Repository
 import javax.inject.Inject
 
 class GetNumberUseCase @Inject constructor(private val repository: Repository) {
-    suspend fun invoke(number: String): NumberDomain {
-       return repository.getNumber(number)
+    suspend operator fun invoke(number: String): NumberDomain {
+        return repository.getNumber(number)
     }
 }

@@ -31,7 +31,7 @@ class HomeViewModel @Inject constructor(
 
     private fun getAllNumbers() {
         viewModelScope.launch {
-            getAllNumbersUseCase.invoke()
+            getAllNumbersUseCase()
                 .map { it.map { numberDomain -> numberMapper.mapFromDomainToView(numberDomain) } }
                 .collect {
                     _allNumbers.value = it
@@ -41,14 +41,14 @@ class HomeViewModel @Inject constructor(
 
     fun getNumber(nextInt: String) {
         viewModelScope.launch {
-            val num = getNumberUseCase.invoke(nextInt)
+            val num = getNumberUseCase(nextInt)
             _numberLiveData.value = numberMapper.mapFromDomainToView(num)
         }
     }
 
     fun getRandomFact() {
         viewModelScope.launch {
-            getRandomNumber.invoke()
+            getRandomNumber()
         }
     }
 }

@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GetAllNumbersUseCase @Inject constructor(private val repository: Repository) {
-    fun invoke(): Flow<List<NumberDomain>> {
+    operator fun invoke(): Flow<List<NumberDomain>> {
         return repository.getAllNumbers()
     }
 
