@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -77,7 +78,19 @@ class HomeFragment : Fragment() {
 
     private fun observeLiveData() {
         viewModel.numberLiveData.observe(viewLifecycleOwner) {
-            Log.d("myLog", it.toString())
+            when (it) {
+                is UiHomeState.Success<*> -> {
+                    Log.d("myLog", it.toString())
+                }
+
+                is UiHomeState.Error -> {
+                    Toast.makeText(
+                        context,
+                        "Something get wrong. Please try again",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
         }
         viewModel.allNumbers.observe(viewLifecycleOwner) {
             adapter.differ.submitList(it)
