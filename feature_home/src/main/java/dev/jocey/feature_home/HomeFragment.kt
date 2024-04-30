@@ -9,14 +9,19 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.collection.ArrayMap
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.android.support.AndroidSupportInjection
 import dev.jocey.feature_home.databinding.FragmentHomeBinding
 import dev.jocey.feature_home.model.NumberView
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -48,6 +53,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         bindViews()
         observeLiveData()
+
+        val map = ArrayMap<Int,NumberView>()
+        map[1] = NumberView(12,"dsds")
 
     }
 
@@ -92,8 +100,30 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-        viewModel.allNumbers.observe(viewLifecycleOwner) {
-            adapter.differ.submitList(it)
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.allNumbers.collect {
+                    when (it) {
+                        is UiHomeState.Success<*> -> {
+                            val list = it.value as? List<NumberView>
+                            list?.let {
+                                adapter.differ.submitList(it)
+                            }
+
+                        }
+
+                        is UiHomeState.Error -> {
+                            Toast.makeText(
+                                context,
+                                "Something get wrong. Please try again",
+                                Toast.LENGTH_LONG
+                            ).show()
+
+                        }
+                    }
+                }
+            }
         }
     }
 
